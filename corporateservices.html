@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corporate Events – Celebrato</title>
+
+     <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --background-light: #fffdf6;
+        --accent: #c2b280;
+        --highlight: #800000;
+        --text-dark: #2c2c2c;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--background-light);
+      }
+      
+
+      /* HERO SECTION */
+      .hero-wrapper {
+        background: url("psbg.jpeg") no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+      }
+
+      .hero-section {
+        position: relative;
+        z-index: 2;
+        padding: 3rem;
+      }
+
+      .hero-section h1 {
+        font-size: 4rem;
+        font-family: "Cinzel", serif;
+        font-weight: bold;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      }
+
+      .hero-section p {
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background-color: transparent !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .navbar .dropdown-toggle::after {
+        display: none !important;
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: white !important;
+      }
+
+      .nav-link:hover,
+      .dropdown-item:hover {
+        color: var(--accent) !important;
+      }
+
+      .dropdown-menu {
+        background-color: white;
+        border: none;
+      }
+
+      .dropdown-item {
+        color: var(--text-dark);
+      }
+
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+        margin-right: 10px;
+      }
+
+      .navbar-brand span {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+
+      .combined-elegant-section {
+        background: url("pricingbg.jpg") no-repeat center center/cover;
+        position: relative;
+        padding: 60px 0 80px;
+        color: #fff;
+      }
+
+      .combined-elegant-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* for readability */
+        z-index: 1;
+      }
+
+      .combined-elegant-section .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .combined-elegant-section h2,
+      .combined-elegant-section .section-title {
+        font-family: "Cinzel", serif;
+        color: #fff;
+      }
+
+      .combined-elegant-section .event-card,
+      .combined-elegant-section .pricing-card {
+        background-color: rgba(255, 255, 255, 0.92);
+        color: #2c2c2c;
+      }
+
+
+   
+      .event-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.5); /* dark overlay for readability */
+        z-index: 1;
+      }
+
+      .event-section .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .event-section h2 {
+        font-family: "Cinzel", serif;
+        color: #fff;
+        margin-bottom: 50px;
+      }
+
+      /* Cards on dark background */
+      .event-card {
+        background-color: rgba(255, 255, 255, 0.85);
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+        height: 100%;
+        color: #2c2c2c;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .event-card img {
+        height: 230px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .event-card .card-body {
+        padding: 1rem 1.2rem;
+      }
+
+      .event-card .card-title {
+        color: var(--highlight);
+        font-weight: 600;
+      }
+
+      /* Modal Styling */
+      .custom-modal {
+        background-color: #fff8f0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        color: #2c2c2c;
+      }
+
+      .modal-header-custom {
+        background-color: #800000;
+        color: #ffffff;
+        border-bottom: 2px solid #c2b280;
+      }
+
+      .modal-header-custom .btn-close {
+        filter: brightness(200%);
+      }
+
+      .modal-body ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+      }
+
+      .btn-booknow {
+        background-color: #c2b280;
+        color: #2c2c2c;
+        border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+      }
+
+      .btn-booknow:hover {
+        background-color: #a19263;
+        color: #fff;
+      }
+
+      .bg-maroon {
+        background-color: #800000;
+      }
+
+      .bg-lightcream {
+        background-color: #fff7ec;
+      }
+
+      .btn-gold {
+        background-color: #c2b280;
+        color: #000;
+        font-weight: bold;
+        border-radius: 10px;
+      }
+
+      .btn-gold:hover {
+        background-color: #b8a864;
+        color: #000;
+      }
+
+      /* More Coming Soon */
+      .page-heading {
+        text-align: center;
+        margin: 80px 0;
+        color: var(--highlight);
+        font-family: "Cinzel", serif;
+        font-size: 2.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .event-section .col-md-4 {
+          display: flex;
+        }
+      }
+
+      .pricing-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5); /* dark overlay for readability */
+        z-index: 1;
+      }
+
+      .pricing-section .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-title {
+        font-family: "Cinzel", serif;
+        color: #fff;
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+
+      .section-subtext {
+        font-size: 1.1rem;
+        color: #f1f1f1;
+        max-width: 700px;
+        margin: auto;
+      }
+
+      .pricing-card {
+        background-color: rgba(255, 255, 255, 0.95);
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 1rem;
+      }
+
+      .pricing-card .card-title {
+        font-weight: bold;
+        color: #800000;
+        font-size: 1.3rem;
+      }
+
+      .btn-maroon {
+        background-color: #800000;
+        color: #fff;
+        border-radius: 50px;
+        padding: 10px 30px;
+        font-weight: bold;
+        transition: 0.3s ease-in-out;
+      }
+
+      .btn-maroon:hover {
+        background-color: #a10000;
+        color: #fff;
+      }
+
+      .whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+      @media (max-width: 768px) {
+        .hero-section h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-section p {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+
+
+
+  </head>
+
+  <body>
+    <!-- Hero Section with Navbar -->
+    <div class="hero-wrapper">
+      <nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <img src="logo1.png" alt="Celebrato Logo" style="height: 40px; margin-right: 10px;" />
+      <span>Celebrato</span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto">
+
+        <!-- Home -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <!-- About Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="about.html#our-story">Our Story</a></li>
+            <li><a class="dropdown-item" href="about.html#our-team">Our Team</a></li>
+            <li><a class="dropdown-item" href="about.html#careers">Careers</a></li>
+          </ul>
+        </li>
+
+        <!-- Services Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="personalservices.html">Personal Events</a></li>
+            <li><a class="dropdown-item" href="corporateservices.html">Corporate Events</a></li>
+          </ul>
+        </li>
+<!--Legacy-->
+       <li class="nav-item"><a class="nav-link" href="legacy.html">Legacy</a></li>
+        <!-- Contact -->
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+      <!-- Hero Content -->
+      <section class="hero-section">
+        <div class="container">
+          <h1>Corporate & Business Events</h1>
+          <p>Elevate Your Business Events with Style and Precision</p>
+        </div>
+      </section>
+    </div>
+
+     <!-- Combined Section with One Background -->
+    <section class="combined-elegant-section">
+      <div class="container text-center">
+        <!-- EVENT SERVICES TITLE -->
+        <h2 style="color: black"><strong>Our Corporate & Business Event Services</strong></h2>
+        <br><br>
+
+        <!-- EVENT CARDS (keep your current row/columns here) -->
+        <div class="row g-4">
+          <!-- ... all event cards here (unchanged) ... -->
+          <!-- Repeat Card Structure -->
+          <!-- Meeting -->
+          <div class="col-md-4 d-flex">
+            <div class="card event-card w-100"
+            data-bs-toggle="modal" 
+       data-bs-target="#meetingModal">
+              <img src="meetings.webp" alt="Meetings" />
+              <div class="card-body">
+                <h5 class="card-title">Meetings</h5>
+                <p class="card-text">
+                  Well-organized business meetings with seamless tech setup, professional ambiance, and catering.
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Product Launches -->
+          <div class="col-md-4 d-flex">
+            <div class="card event-card w-100"
+            data-bs-toggle="modal" 
+       data-bs-target="#launchModal">
+              <img src="productlaunch.png" alt="Product Launches" />
+              <div class="card-body">
+                <h5 class="card-title">Product Launches</h5>
+                <p class="card-text">
+                  Create buzz with engaging launch events, media coverage, stage setup, and interactive demos.
+                </p>
+              </div>
+            </div>
+          </div>
+
+<!-- Conferences -->
+<div class="col-md-4 d-flex">
+  <div class="card event-card w-100"
+  data-bs-toggle="modal" 
+       data-bs-target="#conferenceModal">
+    <img src="Conferences.jpeg" alt="Conferences" />
+    <div class="card-body">
+      <h5 class="card-title">Conferences</h5>
+      <p class="card-text">
+        End-to-end planning of corporate conferences with keynote stages, breakout sessions, and tech.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Annual Gatherings -->
+<div class="col-md-4 d-flex">
+  <div class="card event-card w-100"
+  data-bs-toggle="modal" 
+       data-bs-target="#gatheringModal">
+    <img src="annual.webp" alt="Annual Gatherings" />
+    <div class="card-body">
+      <h5 class="card-title">Annual Gatherings</h5>
+      <p class="card-text">
+        Celebrate milestones with formal gatherings, team awards, entertainment, and fine dining.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Networking Events -->
+<div class="col-md-4 d-flex">
+  <div class="card event-card w-100"
+  data-bs-toggle="modal" 
+       data-bs-target="#networkingModal">
+    <img src="networks.jpg" alt="Networking Events" />
+    <div class="card-body">
+      <h5 class="card-title">Networking Events</h5>
+      <p class="card-text">
+        Foster professional connections with ambient venues, light refreshments, and name badge services.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Team Building -->
+<div class="col-md-4 d-flex">
+  <div class="card event-card w-100"
+       data-bs-toggle="modal" 
+       data-bs-target="#teamModal">   <!-- ✅ Add these two -->
+    <img src="teambuilt.jpeg" alt="Team Building" />
+    <div class="card-body">
+      <h5 class="card-title">Team Building</h5>
+      <p class="card-text">
+        Fun and engaging activities designed to build trust, collaboration, 
+        and morale within your teams.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Award Ceremonies -->
+<div class="col-md-4 mx-auto d-flex">
+  <div class="card event-card w-100"
+  data-bs-toggle="modal" 
+       data-bs-target="#awardModal">
+    <img src="awards.webp" alt="Award Ceremonies" />
+    <div class="card-body">
+      <h5 class="card-title">Award Ceremonies</h5>
+      <p class="card-text">
+        Elegant evenings with stage setup, trophies, anchors, and guest performances to honor excellence.
+      </p>
+    </div>
+  </div>
+</div>
+        </div>
+      </div>
+
+ <!-- Business Meeting Modal -->
+<div
+  class="modal fade"
+  id="meetingModal"
+  tabindex="-1"
+  aria-labelledby="meetingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <!-- Modal Header -->
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="meetingModalLabel">
+          📌 Business Meeting Packages & Services
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body p-4">
+        <p>
+          Host professional and productive business meetings with our
+          fully-equipped setups. From AV systems to catering, we ensure a
+          seamless experience for your team and clients.
+        </p>
+
+        <hr />
+
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li>
+            <strong>Essential Meet:</strong> Conference Room, AV Setup, Light
+            Refreshments – ₹60,000
+          </li>
+          <li>
+            <strong>Executive Meet:</strong> Premium Venue, Professional Décor,
+            Catering – ₹1,20,000
+          </li>
+          <li>
+            <strong>Boardroom Elite:</strong> 5-Star Venue, High-Tech AV,
+            Personalized Assistance – ₹2,50,000+
+          </li>
+        </ul>
+
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Professional AV & Presentation Setup</li>
+          <li>On-site Coordinator & Technical Support</li>
+          <li>Customized Branding & Stationery</li>
+          <li>Catering (Snacks, Tea/Coffee, Buffet Options)</li>
+          <li>Seating Arrangements for Boardroom & Teams</li>
+        </ul>
+
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Launch Modal -->
+<div class="modal fade" id="launchModal" tabindex="-1" aria-labelledby="launchModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="launchModalLabel">🚀 Product Launch Packages & Services</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>
+          Unveil your product in style with stunning presentations, celebrity appearances, and engaging audience experiences.
+        </p>
+        <hr />
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li><strong>Starter:</strong> Venue, Branding, AV Setup – ₹1,50,000</li>
+          <li><strong>Premium:</strong> Stage Design, Catering, Photography – ₹3,00,000</li>
+          <li><strong>Elite:</strong> Celebrity Host, Designer Décor, Full PR – ₹7,00,000+</li>
+        </ul>
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Stage & Launch Setup</li>
+          <li>Product Branding & Displays</li>
+          <li>Live Streaming / Media Coverage</li>
+          <li>Catering & Entertainment</li>
+          <li>Celebrity or Influencer Engagement</li>
+        </ul>
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <!-- Conference Modal -->
+<div class="modal fade" id="conferenceModal" tabindex="-1" aria-labelledby="conferenceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="conferenceModalLabel">🎤 Conference Packages & Services</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>
+          Conduct impactful conferences with world-class arrangements, from multi-speaker stages to delegate hospitality.
+        </p>
+        <hr />
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li><strong>Standard:</strong> Hall Setup, AV, Registration Desk – ₹1,00,000</li>
+          <li><strong>Professional:</strong> Stage Décor, Photography, Lunch Buffet – ₹2,50,000</li>
+          <li><strong>International:</strong> Luxury Venue, Simultaneous Translation, VIP Hosting – ₹5,00,000+</li>
+        </ul>
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Stage, Podium & AV Setup</li>
+          <li>Delegate Registration & Badging</li>
+          <li>Photography & Videography</li>
+          <li>Lunch / High-Tea Arrangements</li>
+          <li>On-site Support Team</li>
+        </ul>
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Award Ceremony Modal -->
+<div class="modal fade" id="awardModal" tabindex="-1" aria-labelledby="awardModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="awardModalLabel">🏆 Award Ceremony Packages & Services</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>
+          Celebrate excellence with grand award nights featuring stage setups, trophies, performances, and celebrity anchors.
+        </p>
+        <hr />
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li><strong>Elegant:</strong> Venue, Stage, Anchor – ₹2,50,000</li>
+          <li><strong>Prestige:</strong> Designer Décor, Celebrity Host, Catering – ₹5,00,000</li>
+          <li><strong>Red Carpet:</strong> Premium Venue, Live Performances, Media – ₹10,00,000+</li>
+        </ul>
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Stage & Trophy Setup</li>
+          <li>Anchors / Hosts</li>
+          <li>Live Performances</li>
+          <li>Luxury Décor & Red Carpet</li>
+          <li>Media Coverage & Photography</li>
+        </ul>
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+<!-- Networking Event Modal -->
+<div class="modal fade" id="networkingModal" tabindex="-1" aria-labelledby="networkingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="networkingModalLabel">🤝 Networking Event Packages & Services</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>
+          Build meaningful connections with ambient venues, light refreshments, and engaging networking activities.
+        </p>
+        <hr />
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li><strong>Basic:</strong> Venue, Tea/Coffee, Name Badges – ₹80,000</li>
+          <li><strong>Professional:</strong> Themed Setup, Catering, Photography – ₹2,00,000</li>
+          <li><strong>Exclusive:</strong> Premium Venue, Celebrity Speaker, Entertainment – ₹5,00,000+</li>
+        </ul>
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Event Venue & Setup</li>
+          <li>Custom Badges & Branding</li>
+          <li>Refreshments / Catering</li>
+          <li>Entertainment / Icebreakers</li>
+          <li>Media & Photography</li>
+        </ul>
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Team Building Modal -->
+<div
+  class="modal fade"
+  id="teamModal"
+  tabindex="-1"
+  aria-labelledby="teamBuildingModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <!-- Modal Header -->
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="teamBuildingModalLabel">
+          🤝 Team Building Packages & Services
+        </h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body p-4">
+        <p>
+          Strengthen bonds, boost collaboration, and ignite creativity within your team 
+          through exciting and engaging team-building experiences. From outdoor challenges 
+          to indoor workshops, we ensure fun and growth together.
+        </p>
+
+        <hr />
+
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li>
+            <strong>Basic Bonding:</strong> Ice-breaker Games, Group Activities, 
+            Light Snacks – ₹50,000
+          </li>
+          <li>
+            <strong>Dynamic Team:</strong> Adventure Activities, Professional Trainer, 
+            Lunch & Refreshments – ₹1,20,000
+          </li>
+          <li>
+            <strong>Elite Leadership Retreat:</strong> Outdoor Camping, Leadership Games, 
+            Motivational Speaker, Full Catering – ₹2,50,000+
+          </li>
+        </ul>
+
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Fun Ice-breakers & Games</li>
+          <li>Adventure & Outdoor Activities</li>
+          <li>Workshops with Trainers/Facilitators</li>
+          <li>Food, Beverages & Refreshments</li>
+          <li>Customized Team Challenges</li>
+          <li>Photo & Video Coverage of Activities</li>
+        </ul>
+
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Annual Gathering Modal -->
+<div class="modal fade" id="gatheringModal" tabindex="-1" aria-labelledby="gatheringModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content custom-modal">
+      <div class="modal-header modal-header-custom">
+        <h5 class="modal-title" id="gatheringModalLabel">🎉 Annual Gathering Packages & Services</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-4">
+        <p>
+          Celebrate company milestones with a night of entertainment, awards, and dining experiences that employees cherish.
+        </p>
+        <hr />
+        <h6><strong>✨ Package Options:</strong></h6>
+        <ul>
+          <li><strong>Celebration:</strong> Venue, Stage, Music – ₹2,00,000</li>
+          <li><strong>Festive:</strong> Catering, Photography, Anchors – ₹4,00,000</li>
+          <li><strong>Grand Gala:</strong> Celebrity Appearance, Luxury Setup, Performances – ₹8,00,000+</li>
+        </ul>
+        <h6 class="mt-4"><strong>🎁 Services Include:</strong></h6>
+        <ul>
+          <li>Stage & Lighting Setup</li>
+          <li>DJ / Live Performances</li>
+          <li>Awards & Trophies</li>
+          <li>Catering & Dining</li>
+          <li>Team Activities & Anchoring</li>
+        </ul>
+        <div class="text-center mt-4">
+          <a href="contact.html" class="btn btn-booknow">📞 Book Now </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+   
+
+
+      <!-- PRICING & PACKAGES TITLE -->
+<div class="container text-center mt-5">
+  <h2 class="section-title mb-4">🎁 PACKAGES & PRICING</h2>
+  <p class="section-subtext mb-5">
+    Explore customizable corporate event packages tailored for professional experiences — from formal board meetings to grand award nights. We offer everything you need for a flawless execution.
+  </p>
+
+  <div class="row justify-content-center g-4">
+    <!-- Classic Package -->
+    <div class="col-md-4">
+      <div class="card pricing-card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Essential Package</h5>
+          <p class="card-text">
+            Best for small meetings or internal team events. Includes basic AV setup, light refreshments, and event coordination.
+          </p>
+          <p><strong>Starting at ₹60,000</strong></p>
+          <a href="contact.html" class="btn btn-outline-dark">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Package -->
+    <div class="col-md-4">
+      <div class="card pricing-card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Business Plus</h5>
+          <p class="card-text">
+            Perfect for product launches, networking nights or mid-size conferences. Includes stage design, branding and catering.
+          </p>
+          <p><strong>Starting at ₹1,25,000</strong></p>
+          <a href="contact.html" class="btn btn-outline-dark">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Elite Package -->
+    <div class="col-md-4">
+      <div class="card pricing-card h-100">
+        <div class="card-body">
+          <h5 class="card-title">Corporate Elite</h5>
+          <p class="card-text">
+            A premium experience for annual galas or award shows with luxury venues, entertainment, LED staging & full planning.
+          </p>
+          <p><strong>Starting at ₹2,50,000+</strong></p>
+          <a href="contact.html" class="btn btn-outline-dark">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+<!-- Get a Custom Quote Button -->
+<div class="mt-5 text-center">
+  <button
+    type="button"
+    class="btn btn-maroon btn-lg rounded-pill px-4 py-2"
+    data-bs-toggle="modal"
+    data-bs-target="#quoteModal"
+  >
+    ✨ Get a Custom Quote
+  </button>
+</div>
+</section>
+
+
+<!-- Corporate Services Custom Quote Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content bg-dark text-light border-0 rounded-4 shadow-lg">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="quoteModalLabel">✨ Get a Corporate Event Quote</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Form Starts -->
+        <form>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="fullName" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="Your full name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="emailAddress" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="emailAddress" placeholder="Enter your email" required>
+            </div>
+            <div class="col-md-6">
+              <label for="eventType" class="form-label">Corporate Event Type</label>
+              <select class="form-select" id="eventType">
+                <option selected>Choose...</option>
+                <option>Business Meeting</option>
+                <option>Conference</option>
+                <option>Product Launch</option>
+                <option>Annual Gathering</option>
+                <option>Networking Event</option>
+                <option>Team Building</option>
+                <option>Award Ceremony</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="eventDate" class="form-label">Preferred Event Date</label>
+              <input type="date" class="form-control" id="eventDate">
+            </div>
+            <div class="col-12">
+              <label for="customDetails" class="form-label">Additional Details / Custom Requests</label>
+              <textarea class="form-control" id="customDetails" rows="3" placeholder="Tell us what you envision..." required></textarea>
+            </div>
+          </div>
+          <div class="mt-4 text-end">
+            <button type="submit" class="btn btn-warning px-4 py-2 rounded-pill">
+              🎀 Get My Quote
+            </button>
+          </div>
+        </form>
+        <!-- Form Ends -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Final Unified Section for Corporate Services -->
+<section style="background: linear-gradient(135deg, #2c2c2c, #1a1a1a); color: #fff; padding: 60px 0;">
+  <div class="container text-center">
+    
+    <!-- Testimonials Teaser -->
+<h3 class="mb-4" style="font-size: 1.8rem; font-weight: 600;">💼 What Our Clients Say</h3>
+<blockquote class="blockquote">
+  <p class="mb-2 fst-italic" style="font-size: 1.1rem;">
+    “Our annual corporate gathering was a seamless success! Celebrato handled every detail with utmost professionalism.”
+  </p>
+  <footer class="blockquote-footer text-white-50">GlobalTech Pvt. Ltd.</footer>
+</blockquote>
+<a href="legacy.html" class="btn btn-outline-light mt-4 mb-5 px-4 py-2 rounded-pill">
+  Explore More Experiences
+</a>
+
+
+    <!-- Final CTA -->
+    <h2 class="mb-3" style="font-weight: 700; font-size: 2.2rem;">
+      Craft Memorable Corporate Experiences 🚀
+    </h2>
+    <p class="lead mb-4" style="max-width: 750px; margin: 0 auto;">
+      From impactful product launches to high-energy team-building retreats, <strong>Celebrato</strong> is your trusted partner in delivering flawless corporate events. We ensure every detail is handled with precision, leaving your team and clients inspired.
+    </p>
+    <a href="contact.html" class="btn btn-danger btn-lg px-5 py-3 rounded-pill shadow">
+      💌 Contact Us Now
+    </a>
+  </div>
+</section>
+
+
+<!-- WhatsApp Chat Button -->
+<a href="https://wa.me/919876543210" 
+   class="whatsapp-float" 
+   target="_blank" 
+   title="Chat with us on WhatsApp">
+  <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" 
+       alt="WhatsApp Chat" 
+       style="height: 50px; width: 50px;">
+</a>
+
+ <!-- Bootstrap Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const quoteForm = document.querySelector('#quoteModal form');
+
+    if (quoteForm) {
+      quoteForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // stop actual form submission
+        // redirect to contact page
+        window.location.href = "contact.html";
+      });
+    }
+  });
+</script>
+
+
+  </body>
+</html>

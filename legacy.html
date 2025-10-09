@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery – Celebrato</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --background-light: #fffdf6;
+        --accent: #c2b280;
+        --highlight: #800000;
+        --text-dark: #2c2c2c;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--background-light);
+      }
+
+      /* HERO SECTION */
+      .hero-wrapper {
+        background: url("legacy-bg.png") no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+        color: white;
+        filter: brightness(1.2);
+      }
+      .hero-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background-color: transparent !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .navbar .dropdown-toggle::after {
+        display: none !important;
+      }
+      .navbar-brand,
+      .nav-link {
+        color: white !important;
+      }
+      .nav-link:hover,
+      .dropdown-item:hover {
+        color: var(--accent) !important;
+      }
+      .dropdown-menu {
+        background-color: white;
+        border: none;
+      }
+      .dropdown-item {
+        color: var(--text-dark);
+      }
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+        margin-right: 10px;
+      }
+      .navbar-brand span {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+
+      /* GALLERY HEADER */
+      .gallery-header {
+        background: url("assets/images/gallery-header.jpg") center/cover
+          no-repeat;
+        height: 50vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+      }
+      .gallery-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .gallery-header h1 {
+        position: relative;
+        z-index: 2;
+        font-family: "Cinzel", serif;
+      }
+
+      /* Modal Background */
+      .modal-backdrop.show {
+        background-color: rgba(0, 0, 0, 0.85) !important;
+        backdrop-filter: blur(8px);
+      }
+      #galleryModal .modal-content {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+      }
+      .gallery-modal-img {
+        max-width: 80%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 12px;
+        display: block;
+        margin: auto;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+      }
+      #galleryModal .btn-close {
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        z-index: 2000;
+        filter: invert(1);
+        opacity: 0.9;
+      }
+      #galleryModal .carousel-control-prev,
+      #galleryModal .carousel-control-next {
+        width: 8%;
+        z-index: 1500;
+      }
+      #galleryModal .carousel-control-prev {
+        left: -5%;
+      }
+      #galleryModal .carousel-control-next {
+        right: -5%;
+      }
+
+      /* Masonry Gallery */
+      .gallery-masonry {
+        column-count: 3;
+        column-gap: 15px;
+        padding: 20px;
+      }
+      .gallery-masonry img {
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        display: block;
+        break-inside: avoid;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+      .gallery-masonry img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Responsive Masonry */
+      @media (max-width: 992px) {
+        .gallery-masonry {
+          column-count: 2;
+        }
+      }
+      @media (max-width: 576px) {
+        .gallery-masonry {
+          column-count: 1;
+        }
+      }
+
+      /* Divider Section */
+      /* Background with soft gradient */
+/* Background with soft gradient */
+.divider-section {
+  background: linear-gradient(to right, #fff8f0, #fdecec);
+  position: relative;
+}
+
+/* SVG Flourish */
+.divider-flourish {
+  margin: 12px 0;
+}
+
+/* Quote Styling */
+.divider-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-style: italic;
+  color: #a61c3c; /* elegant maroon */
+  letter-spacing: 1px;
+  line-height: 1.6;
+  margin: 15px 0;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.08);
+}
+
+
+
+
+
+      .divider-section h2 {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        color: var(--highlight);
+        font-style: italic;
+      }
+
+      /* Testimonials */
+      .testimonial-card {
+        border: none;
+        border-radius: 15px;
+        background: #ffffff;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+      }
+      .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 3px solid var(--accent);
+      }
+      .testimonial-card p {
+        font-style: italic;
+        color: #555;
+      }
+      .testimonial-card h6 {
+        margin-top: 10px;
+        font-weight: bold;
+        color: var(--highlight);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section with Navbar -->
+    <div class="hero-wrapper">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="logo1.png" alt="Celebrato Logo" />
+            <span>Celebrato</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  >About</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="about.html#our-story"
+                      >Our Story</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="about.html#our-team"
+                      >Our Team</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="about.html#careers"
+                      >Careers</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  >Services</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="personalservices.html"
+                      >Personal Events</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="corporateservices.html"
+                      >Corporate Events</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="legacy.html">Legacy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <!-- ✅ CLOSE hero-wrapper -->
+
+    <!-- Gallery Section -->
+    <section class="py-5">
+      <div class="container">
+        <h1 class="display-5 fw-bold text-center mb-4">Photo Gallery</h1>
+        <p
+          class="text-center mb-5"
+          style="max-width: 800px; margin: auto; color: #444"
+        >
+          A glimpse into our finest celebrations crafted with love, elegance,
+          and unforgettable memories. Browse through our gallery and relive the
+          magic we create for every special occasion.
+        </p>
+
+        <!-- ✅ Masonry Gallery -->
+        <div class="gallery-masonry">
+          <img
+            src="leg1.webp"
+            class="gallery-thumb"
+            data-index="0"
+            alt="Event Photo 1"
+          />
+          <img
+            src="leg2.jpg"
+            class="gallery-thumb"
+            data-index="1"
+            alt="Event Photo 2"
+          />
+          <img
+            src="leg3.webp"
+            class="gallery-thumb"
+            data-index="2"
+            alt="Event Photo 3"
+          />
+          <img
+            src="leg4.jpeg"
+            class="gallery-thumb"
+            data-index="3"
+            alt="Event Photo 4"
+          />
+          <img
+            src="leg5.jpg"
+            class="gallery-thumb"
+            data-index="4"
+            alt="Event Photo 5"
+          />
+          <img
+            src="leg6.jpg"
+            class="gallery-thumb"
+            data-index="5"
+            alt="Event Photo 6"
+          />
+          <img
+            src="leg7.webp"
+            class="gallery-thumb"
+            data-index="6"
+            alt="Event Photo 7"
+          />
+          <img
+            src="leg8.jpg"
+            class="gallery-thumb"
+            data-index="7"
+            alt="Event Photo 8"
+          />
+          <img
+            src="leg9.jpeg"
+            class="gallery-thumb"
+            data-index="8"
+            alt="Event Photo 9"
+          />
+          <img
+            src="leg10.jpeg"
+            class="gallery-thumb"
+            data-index="9"
+            alt="Event Photo 10"
+          />
+          <img
+            src="leg11.jpg"
+            class="gallery-thumb"
+            data-index="10"
+            alt="Event Photo 11"
+          />
+          <img
+            src="leg12.jpg"
+            class="gallery-thumb"
+            data-index="11"
+            alt="Event Photo 12"
+          />
+          <img
+            src="leg13.jpg"
+            class="gallery-thumb"
+            data-index="12"
+            alt="Event Photo 13"
+          />
+          <img
+            src="leg14.webp"
+            class="gallery-thumb"
+            data-index="13"
+            alt="Event Photo 14"
+          />
+          <img
+            src="leg15.jpg"
+            class="gallery-thumb"
+            data-index="14"
+            alt="Event Photo 15"
+          />
+          <img
+            src="leg16.jpeg"
+            class="gallery-thumb"
+            data-index="15"
+            alt="Event Photo 16"
+          />
+          <img
+            src="leg17.jpg"
+            class="gallery-thumb"
+            data-index="16"
+            alt="Event Photo 17"
+          />
+          <img
+            src="leg18.jpg"
+            class="gallery-thumb"
+            data-index="17"
+            alt="Event Photo 18"
+          />
+        </div>
+
+        <!-- Gallery Modal -->
+        <div
+          class="modal fade"
+          id="galleryModal"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body p-0">
+                <!-- Close button -->
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+
+                <!-- Carousel -->
+                <div
+                  id="galleryCarousel"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img
+                        src="leg1.webp"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 1"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg2.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 2"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg3.webp"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 3"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg4.jpeg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 4"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg5.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 5"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg6.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 6"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg7.webp"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 7"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg8.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 8"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg9.jpeg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 9"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg10.jpeg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 10"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg11.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 11"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg12.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 12"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg13.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 13"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg14.webp"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 14"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg15.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 15"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg16.jpeg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 16"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg17.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 17"
+                      />
+                    </div>
+                    <div class="carousel-item">
+                      <img
+                        src="leg18.jpg"
+                        class="gallery-modal-img"
+                        alt="Gallery Image 18"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Controls -->
+<button
+  class="carousel-control-prev"
+  type="button"
+  data-bs-target="#galleryCarousel"
+  data-bs-slide="prev"
+>
+  <span class="carousel-control-prev-icon"></span>
+</button>
+<button
+  class="carousel-control-next"
+  type="button"
+  data-bs-target="#galleryCarousel"
+  data-bs-slide="next"
+>
+  <span class="carousel-control-next-icon"></span>
+</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- Divider -->
+<section class="divider-section text-center py-5">
+  <div class="container">
+    <!-- Top Ornament -->
+    <div class="divider-flourish">
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="20" viewBox="0 0 100 20" fill="none">
+        <path d="M10 10 Q 25 0, 40 10 T 70 10 T 90 10" stroke="#d4af37" stroke-width="2" fill="transparent"/>
+        <circle cx="50" cy="10" r="3" fill="#d4af37"/>
+      </svg>
+    </div>
+
+    <h2 class="divider-quote">
+      “Every picture tells a story, every client adds a chapter.”
+    </h2>
+
+    <!-- Bottom Ornament -->
+    <div class="divider-flourish">
+      <svg xmlns="http://www.w3.org/2000/svg" width="60" height="20" viewBox="0 0 100 20" fill="none">
+        <path d="M10 10 Q 25 20, 40 10 T 70 10 T 90 10" stroke="#d4af37" stroke-width="2" fill="transparent"/>
+        <circle cx="50" cy="10" r="3" fill="#d4af37"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- Testimonials Section -->
+    <section
+      class="py-5"
+      style="background: linear-gradient(135deg, #fffdf6, #fdfaf3)"
+    >
+      <div class="container">
+        <h1
+          class="text-center mb-5"
+          style="
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.5rem;
+            color: #800000;
+          "
+        >
+          Voices of Celebration
+        </h1>
+
+        <div
+          id="testimonialCarousel"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <!-- Testimonial 1 -->
+            <div class="carousel-item active">
+              <div class="d-flex justify-content-center">
+                <div
+                  class="testimonial-card p-5 text-center"
+                  style="
+                    max-width: 700px;
+                    background: #fff;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                  "
+                >
+                  <!-- Quote Icon -->
+                  <span
+                    style="
+                      font-size: 3rem;
+                      color: #c2b280;
+                      position: absolute;
+                      top: 15px;
+                      left: 25px;
+                    "
+                    >“</span
+                  >
+
+                  <!-- Client Photo -->
+                  <img
+                    src="test1.jpg"
+                    alt="Client 1"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      object-fit: cover;
+                      border-radius: 50%;
+                      border: 4px solid #c2b280;
+                      margin-bottom: 15px;
+                    "
+                  />
+
+                  <!-- Quote -->
+                  <p
+                    style="
+                      font-family: 'Playfair Display', serif;
+                      font-size: 1.3rem;
+                      font-style: italic;
+                      color: #444;
+                      line-height: 1.7;
+                    "
+                  >
+                    Celebrato made our wedding magical! From the décor to the
+                    tiniest detail, everything was beyond our dreams.
+                  </p>
+
+                  <!-- Client Name -->
+                  <h5
+                    style="
+                      margin-top: 15px;
+                      font-weight: 700;
+                      color: #800000;
+                      letter-spacing: 1px;
+                    "
+                  >
+                    Priya & Arjun
+                  </h5>
+                  <div
+                    style="
+                      width: 60px;
+                      height: 3px;
+                      background: #c2b280;
+                      margin: 8px auto;
+                      border-radius: 2px;
+                    "
+                  ></div>
+                  <span style="color: #777; font-size: 0.9rem"
+                    >Wedding Celebration</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div
+                  class="testimonial-card p-5 text-center"
+                  style="
+                    max-width: 700px;
+                    background: #fff;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 3rem;
+                      color: #c2b280;
+                      position: absolute;
+                      top: 15px;
+                      left: 25px;
+                    "
+                    >“</span
+                  >
+                  <img
+                    src="test2.jpg"
+                    alt="Client 2 Logo"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      object-fit: contain;
+                      border-radius: 50%;
+                      background: #fff;
+                      border: 4px solid #c2b280;
+                      margin-bottom: 15px;
+                    "
+                  />
+                  <p
+                    style="
+                      font-family: 'Playfair Display', serif;
+                      font-size: 1.3rem;
+                      font-style: italic;
+                      color: #444;
+                      line-height: 1.7;
+                    "
+                  >
+                    Flawless corporate event – everything on time, elegant, and
+                    professional. Truly a stress-free experience.
+                  </p>
+                  <h5
+                    style="
+                      margin-top: 15px;
+                      font-weight: 700;
+                      color: #800000;
+                      letter-spacing: 1px;
+                    "
+                  >
+                    TechCorp Ltd.
+                  </h5>
+                  <div
+                    style="
+                      width: 60px;
+                      height: 3px;
+                      background: #c2b280;
+                      margin: 8px auto;
+                      border-radius: 2px;
+                    "
+                  ></div>
+                  <span style="color: #777; font-size: 0.9rem"
+                    >Annual Business Summit</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div
+                  class="testimonial-card p-5 text-center"
+                  style="
+                    max-width: 700px;
+                    background: #fff;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 3rem;
+                      color: #c2b280;
+                      position: absolute;
+                      top: 15px;
+                      left: 25px;
+                    "
+                    >“</span
+                  >
+                  <img
+                    src="test3.jpg"
+                    alt="Client 3"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      object-fit: cover;
+                      border-radius: 50%;
+                      border: 4px solid #c2b280;
+                      margin-bottom: 15px;
+                    "
+                  />
+                  <p
+                    style="
+                      font-family: 'Playfair Display', serif;
+                      font-size: 1.3rem;
+                      font-style: italic;
+                      color: #444;
+                      line-height: 1.7;
+                    "
+                  >
+                    A birthday to remember! The entire décor, planning, and vibe
+                    felt personal and perfect.
+                  </p>
+                  <h5
+                    style="
+                      margin-top: 15px;
+                      font-weight: 700;
+                      color: #800000;
+                      letter-spacing: 1px;
+                    "
+                  >
+                    Kavya R.
+                  </h5>
+                  <div
+                    style="
+                      width: 60px;
+                      height: 3px;
+                      background: #c2b280;
+                      margin: 8px auto;
+                      border-radius: 2px;
+                    "
+                  ></div>
+                  <span style="color: #777; font-size: 0.9rem"
+                    >21st Birthday</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="carousel-item">
+              <div class="d-flex justify-content-center">
+                <div
+                  class="testimonial-card p-5 text-center"
+                  style="
+                    max-width: 700px;
+                    background: #fff;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 3rem;
+                      color: #c2b280;
+                      position: absolute;
+                      top: 15px;
+                      left: 25px;
+                    "
+                    >“</span
+                  >
+                  <img
+                    src="test4.jpg"
+                    alt="Client 4"
+                    style="
+                      width: 100px;
+                      height: 100px;
+                      object-fit: cover;
+                      border-radius: 50%;
+                      border: 4px solid #c2b280;
+                      margin-bottom: 15px;
+                    "
+                  />
+                  <p
+                    style="
+                      font-family: 'Playfair Display', serif;
+                      font-size: 1.3rem;
+                      font-style: italic;
+                      color: #444;
+                      line-height: 1.7;
+                    "
+                  >
+                    Our annual gathering was seamless and memorable — from stage
+                    setup to dinner, everything was handled flawlessly.
+                  </p>
+                  <h5
+                    style="
+                      margin-top: 15px;
+                      font-weight: 700;
+                      color: #800000;
+                      letter-spacing: 1px;
+                    "
+                  >
+                    Rajesh Kumar
+                  </h5>
+                  <div
+                    style="
+                      width: 60px;
+                      height: 3px;
+                      background: #c2b280;
+                      margin: 8px auto;
+                      border-radius: 2px;
+                    "
+                  ></div>
+                  <span style="color: #777; font-size: 0.9rem"
+                    >Corporate Annual Gathering</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="cta-section text-center py-5"
+      style="background: linear-gradient(135deg, #800000, #c2b280); color: #fff"
+    >
+      <div class="container">
+        <h2
+          class="mb-3"
+          style="
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+          "
+        >
+          Ready to create your story with us ?
+        </h2>
+        <p
+          class="mb-4"
+          style="
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: auto;
+            color: #f9f9f9;
+          "
+        >
+          Let Celebrato craft unforgettable moments filled with elegance, joy,
+          and timeless memories. Book your dream event today and make it truly
+          magical!
+        </p>
+        <a
+          href="contact.html"
+          class="btn btn-lg"
+          style="
+            background: #fff;
+            color: #800000;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+          "
+        >
+          Book Now
+        </a>
+      </div>
+    </section>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script to sync Masonry thumbnails with Modal -->
+    <script>
+      document.querySelectorAll(".gallery-thumb").forEach((img) => {
+        img.addEventListener("click", function () {
+          let index = this.getAttribute("data-index");
+          let galleryModal = new bootstrap.Modal(
+            document.getElementById("galleryModal")
+          );
+          galleryModal.show();
+
+          let carousel = bootstrap.Carousel.getOrCreateInstance(
+            document.getElementById("galleryCarousel")
+          );
+          carousel.to(index);
+        });
+      });
+    </script>
+  </body>
+</html>

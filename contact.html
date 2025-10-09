@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery – Celebrato</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel&family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --background-light: #ffffff;
+        --accent: #c2b280;
+        --highlight: #800000;
+        --text-dark: #2c2c2c;
+      }
+
+      body {
+        margin: 0;
+        background-color: var(--background-light);
+        color: var(--text-dark);
+        font-family: "Poppins", sans-serif;
+      }
+
+      .hero-wrapper {
+        background: url("bg-contact1.webp") no-repeat center center/cover;
+        height: 100vh;
+        position: relative;
+        color: white;
+      }
+      .hero-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35); /* softer overlay */
+        z-index: 1;
+      }
+      .hero-content {
+        position: absolute;
+        bottom: 60px; /* push near bottom */
+        left: 80px; /* push from left */
+        text-align: left;
+        z-index: 2;
+        max-width: 650px;
+      }
+      .hero-content h1 {
+        font-family: "Cinzel Decorative", serif;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #f8f5e7; /* elegant ivory/cream */
+      }
+
+      /* NAVBAR */
+      .navbar {
+        background-color: transparent !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .navbar .dropdown-toggle::after {
+        display: none !important;
+      }
+      .navbar-brand,
+      .nav-link {
+        color: #f8f5e7 !important;
+      }
+      .nav-link:hover,
+      .dropdown-item:hover {
+        color: var(--accent) !important;
+      }
+      .dropdown-menu {
+        background-color: white;
+        border: none;
+      }
+      .dropdown-item {
+        color: var(--text-dark);
+      }
+      .navbar-brand img {
+        height: 40px;
+        width: auto;
+        margin-right: 10px;
+      }
+      .navbar-brand span {
+        font-family: "Cinzel", serif;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+
+      /* Contact Section Box */
+      .contact-box {
+        background: var(--background-light);
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Left side - Info */
+      .contact-box h2,
+      .contact-box h3 {
+        color: var(--highlight);
+      }
+
+      .contact-box p {
+        color: var(--text-dark);
+      }
+
+      .contact-box a {
+        color: var(--highlight);
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .contact-box a:hover {
+        color: var(--accent);
+      }
+
+      /* Right side - Form */
+      .contact-form {
+        background: #ffffff;
+        border: 1px solid var(--accent);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .contact-form h3 {
+        color: var(--highlight);
+        margin-bottom: 15px;
+      }
+
+      .contact-form input,
+      .contact-form textarea {
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: var(--text-dark);
+        background: #fff;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        caret-color: var(--highlight); /* maroon caret */
+      }
+
+      /* ✅ Override Bootstrap blue focus completely */
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        border-color: var(--highlight) !important; /* maroon border */
+        box-shadow: 0 0 6px rgba(128, 0, 0, 0.45) !important; /* soft maroon glow */
+        outline: none !important;
+      }
+
+      /* ✅ Prevent Bootstrap from forcing blue border */
+      .form-control:focus {
+        border-color: var(--highlight) !important;
+        box-shadow: 0 0 6px rgba(128, 0, 0, 0.45) !important;
+        outline: none !important;
+      }
+
+      /* ✅ Text selection color inside inputs */
+      .contact-form input::selection,
+      .contact-form textarea::selection {
+        background: var(--highlight);
+        color: #fff;
+      }
+
+      /* Custom Button */
+      .btn-custom {
+        background-color: var(--highlight);
+        color: #fff;
+        border: none;
+        padding: 10px 24px; /* balanced padding */
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        display: inline-block; /* makes button only as wide as its text */
+        width: auto; /* removes full width */
+      }
+      .btn-custom:hover {
+        background-color: var(--accent) !important; /* Gold */
+        color: var(--text-dark) !important;
+      }
+
+      .footer-link {
+        text-decoration: none;
+        color: #fff;
+        transition: color 0.3s ease;
+      }
+      .footer-link:hover {
+        color: maroon;
+      }
+
+      .whatsapp-float {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 999;
+        background-color: #ffffff;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        transition: transform 0.3s ease;
+      }
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section with Navbar -->
+    <div class="hero-wrapper">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <img src="logo1.png" alt="Celebrato Logo" />
+            <span>Celebrato</span>
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarContent"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                  >About</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="about.html#our-story"
+                      >Our Story</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="about.html#our-team"
+                      >Our Team</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="about.html#careers"
+                      >Careers</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  data-bs-toggle="dropdown"
+                  >Services</a
+                >
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="personalservices.html"
+                      >Personal Events</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="corporateservices.html"
+                      >Corporate Events</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="legacy.html">Legacy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contact.html">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- ✅ Centered Hero Content -->
+      <div class="hero-content">
+        <h1>Get In Touch With Celebrato ✨</h1>
+      </div>
+    </div>
+
+    <br><br><br><br><br>
+
+    <!-- Contact Info & Inquiry Form Section -->
+<section class="contact-info-form py-5">
+  <div class="container">
+    <div class="row justify-content-center align-items-start g-4">
+      
+      <!-- Left Side - Contact Info -->
+      <div class="col-md-5">
+        <div class="contact-card text-center p-4 shadow-sm h-100">
+          <!-- Logo -->
+          <div class="mb-4">
+            <img src="logo1.png" alt="Celebrato Logo" style="height: 60px" />
+            <h5 class="mt-2" style="font-family: 'Cinzel', serif; color: #800000">
+              Event Management
+            </h5>
+          </div>
+
+          <!-- Heading -->
+          <h2 class="fw-bold mb-5" style="font-family: 'Cinzel Decorative', serif; font-size: 1.8rem; color: #2c2c2c;">
+            WANT TO WORK WITH US?
+          </h2>
+
+          <!-- Phone -->
+          <div class="d-flex align-items-center justify-content-center mb-4">
+            <i class="bi bi-telephone-fill me-3" style="font-size: 2rem; color: #800000"></i>
+            <div class="text-start">
+              <p class="mb-0 text-muted">TALK TO OUR CLIENT SUPPORT TEAM</p>
+              <h5 class="fw-bold mb-0">+91-123-456-7890</h5>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="d-flex align-items-center justify-content-center mb-4">
+            <i class="bi bi-envelope-fill me-3" style="font-size: 2rem; color: #800000"></i>
+            <div class="text-start">
+              <p class="mb-0 text-muted">WRITE TO US ABOUT YOUR NEEDS</p>
+              <h5 class="fw-bold mb-0">careers@celebrato.com</h5>
+            </div>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="social-icons mt-4">
+            <a href="#" class="me-3"><i class="bi bi-instagram" style="font-size: 2rem; color: #e4405f"></i></a>
+            <a href="#" class="me-3"><i class="bi bi-youtube" style="font-size: 2rem; color: #ff0000"></i></a>
+            <a href="#" class="me-3"><i class="bi bi-facebook" style="font-size: 2rem; color: #1877f2"></i></a>
+            <a href="#" class="me-3"><i class="bi bi-linkedin" style="font-size: 2rem; color: #0a66c2"></i></a>
+            <a href="#"><i class="bi bi-twitter" style="font-size: 2rem; color: #1da1f2"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Inquiry Form -->
+      <div class="col-md-7">
+        <div class="contact-card p-4 shadow-sm">
+          <h2 class="mb-4" style="font-family:'Cinzel Decorative', serif; color:#800000;">
+            Send Us an Inquiry
+          </h2>
+          <form id="inquiryForm">
+            <div class="mb-3">
+              <input type="text" id="name" class="form-control" placeholder="Your Name" required />
+            </div>
+            <div class="mb-3">
+              <input type="tel" id="phone" class="form-control" placeholder="Phone Number" required />
+            </div>
+            <div class="mb-3">
+              <input type="email" id="email" class="form-control" placeholder="Email Address" required />
+            </div>
+            <div class="mb-3">
+              <textarea id="message" class="form-control" rows="4" placeholder="Message / Special Requirements" required></textarea>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-custom">SUBMIT</button>
+            </div>
+            <p id="thankYouMsg" class="mt-3 text-success" style="display:none;">
+              ✅ Thank you for contacting us! Our team will reach out within 24 hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Map / Location Section -->
+    <section class="map-section py-5">
+      <div class="container text-center">
+        <!-- Title -->
+        <h2
+          style="
+            font-family: 'Cinzel Decorative', serif;
+            color: #800000;
+            font-weight: bold;
+          "
+          class="mb-4"
+        >
+          Find Us Here
+        </h2>
+
+        <!-- Map Box (75% width, centered) -->
+        <div
+          class="map-box shadow rounded mx-auto"
+          style="overflow: hidden; border-radius: 12px; width: 75%"
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.430351528819!2d76.95583247465656!3d11.01193675443447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859c70df71b87%3A0x4e7f6d1d96f1a6e0!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1694177600000!5m2!1sen!2sin"
+            width="100%"
+            height="500"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          >
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="footer mt-5 py-5"
+      style="background-color: #000; color: #fff"
+    >
+      <div class="container text-center">
+        <!-- Logo + Title -->
+        <div class="mb-3">
+          <img src="logo1.png" alt="Celebrato Logo" style="height: 60px" />
+          <h4
+            class="mt-2"
+            style="
+              font-family: 'Cinzel Decorative', serif;
+              color: #fff;
+              font-weight: bold;
+            "
+          >
+            CELEBRATO EVENT MANAGEMENT
+          </h4>
+        </div>
+
+        <!-- About Paragraph -->
+        <p
+          class="mx-auto"
+          style="max-width: 700px; font-size: 14px; color: #ddd"
+        >
+          Celebrato Event Management specializes in creating unforgettable
+          experiences for both personal and corporate events. From elegant
+          weddings to high-energy corporate gatherings, we bring your vision to
+          life with creativity, precision, and passion.
+        </p>
+
+        <hr style="width: 80%; margin: 20px auto; border-color: #444" />
+
+        <!-- Links Section -->
+        <div class="row text-center mt-4">
+          <!-- Quick Links -->
+          <div class="col-md-6">
+            <h6 class="fw-bold" style="color: #fff; font-weight: bold">
+              Quick Links
+            </h6>
+            <ul class="list-unstyled">
+              <li><a href="index.html" class="footer-link">Home</a></li>
+              <li><a href="about.html" class="footer-link">About</a></li>
+              <li><a href="legacy.html" class="footer-link">Legacy</a></li>
+              <li><a href="contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div class="col-md-6">
+            <h6 class="fw-bold" style="color: #fff; font-weight: bold">
+              Services
+            </h6>
+            <ul class="list-unstyled">
+              <li>
+                <a href="personalservices.html" class="footer-link">Wedding</a>
+              </li>
+              <li>
+                <a href="personalservices.html" class="footer-link">Birthday</a>
+              </li>
+              <li>
+                <a href="corporateservices.html" class="footer-link"
+                  >Conferences</a
+                >
+              </li>
+              <li>
+                <a href="corporateservices.html" class="footer-link"
+                  >Award Ceremony</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <hr style="width: 80%; margin: 20px auto; border-color: #444" />
+
+        <!-- Contact Info -->
+        <div class="text-center" style="font-size: 14px; color: #ccc">
+          <p>
+            <strong>📍 Office:</strong> Celebrato Event Management, Coimbatore,
+            India
+          </p>
+          <p>
+            <strong>📞 Phone:</strong> +91-98765 43210 |
+            <strong>✉ Email:</strong>
+            <a href="mailto:celebratoevent@gmail.com" style="color: #fff"
+              >careers@celebrato.com</a
+            >
+          </p>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-center mt-3" style="font-size: 13px; color: #777">
+          © 2025 Celebrato Event Management. All Rights Reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp Chat Button -->
+    <a
+      href="https://wa.me/919876543210"
+      class="whatsapp-float"
+      target="_blank"
+      title="Chat with us on WhatsApp"
+    >
+      <img
+        src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png"
+        alt="WhatsApp Chat"
+        style="height: 50px; width: 50px"
+      />
+    </a>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <!--<script>
+      document
+        .getElementById("inquiryForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          document.getElementById("thankYouMsg").style.display = "block";
+          this.reset();
+        });
+    </script>-->
+    <!-- ✅ Backend Connection Script -->
+    <script>
+      document.getElementById("inquiryForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const inquiry = {
+          name: document.getElementById("name").value,
+          phone: document.getElementById("phone").value,
+          email: document.getElementById("email").value,
+          message: document.getElementById("message").value,
+        };
+
+        const thankYouMsg = document.getElementById("thankYouMsg");
+
+        try {
+          const response = await fetch("http://localhost:8080/api/inquiries", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(inquiry),
+          });
+
+          if (response.ok) {
+            thankYouMsg.style.display = "block";
+            thankYouMsg.textContent = "✅ Thank you for contacting us! Our team will reach out within 24 hours.";
+            this.reset();
+          } else {
+            thankYouMsg.style.display = "block";
+            thankYouMsg.classList.add("text-danger");
+            thankYouMsg.textContent = "❌ Failed to submit inquiry. Please try again later.";
+          }
+        } catch (error) {
+          thankYouMsg.style.display = "block";
+          thankYouMsg.classList.add("text-danger");
+          thankYouMsg.textContent = "⚠️ Error connecting to server.";
+        }
+      });
+    </script>
+  </body>
+</html>
