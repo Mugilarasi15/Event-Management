@@ -625,66 +625,56 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
     />
 
-    <!--<script>
-      document
-        .getElementById("inquiryForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          document.getElementById("thankYouMsg").style.display = "block";
-          this.reset();
-        });
-    </script>-->
+ 
     <!-- ✅ Backend Connection Script -->
-    <script>
-      // Replace this with your actual Render backend URL
-      const API_BASE = "https://backendcelebrato.onrender.com";
+    <!-- ✅ Backend Connection Script -->
+<script>
+  // Your live Render backend URL
+  const API_BASE = "https://backendcelebrato.onrender.com";
 
-      document
-        .getElementById("inquiryForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+  document.getElementById("inquiryForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-          // Collect form data
-          const inquiry = {
-            name: document.getElementById("name").value,
-            phone: document.getElementById("phone").value,
-            email: document.getElementById("email").value,
-            message: document.getElementById("message").value,
-          };
+    const thankYouMsg = document.getElementById("thankYouMsg");
+    thankYouMsg.style.display = "block";         // ensure message area is visible
+    thankYouMsg.classList.remove("text-danger"); // remove error class
+    thankYouMsg.textContent = "Submitting...";   // temporary message
 
-          const thankYouMsg = document.getElementById("thankYouMsg");
-          thankYouMsg.style.display = "block"; // ensure message area is visible
-          thankYouMsg.classList.remove("text-danger"); // reset class
+    // Collect form data
+    const inquiry = {
+      name: document.getElementById("name").value.trim(),
+      phone: document.getElementById("phone").value.trim(),
+      email: document.getElementById("email").value.trim(),
+      message: document.getElementById("message").value.trim(),
+    };
 
-          try {
-            const response = await fetch(`${API_BASE}/api/inquiries`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(inquiry),
-            });
+    try {
+      const response = await fetch(`${API_BASE}/api/inquiries`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inquiry),
+      });
 
-            if (response.ok) {
-              // Successfully submitted
-              const data = await response.json(); // parse JSON response
-              thankYouMsg.textContent =
-                "✅ Thank you for contacting us! Our team will reach out within 24 hours.";
-              this.reset(); // reset the form
-              console.log("Inquiry submitted:", data);
-            } else {
-              // Server returned an error
-              const errorText = await response.text();
-              thankYouMsg.classList.add("text-danger");
-              thankYouMsg.textContent = `❌ Failed to submit inquiry. Server responded: ${response.status} ${errorText}`;
-              console.error("Server error:", errorText);
-            }
-          } catch (error) {
-            // Network or connection error
-            thankYouMsg.classList.add("text-danger");
-            thankYouMsg.textContent =
-              "⚠️ Error connecting to server. Please check your internet or backend URL.";
-            console.error("Connection error:", error);
-          }
-        });
-    </script>
+      if (response.ok) {
+        const data = await response.json(); // parse backend response
+        thankYouMsg.textContent =
+          "✅ Thank you for contacting us! Our team will reach out within 24 hours.";
+        this.reset(); // clear the form
+        console.log("Inquiry submitted:", data);
+      } else {
+        const errorText = await response.text();
+        thankYouMsg.classList.add("text-danger");
+        thankYouMsg.textContent = `❌ Failed to submit inquiry. Server responded: ${response.status}`;
+        console.error("Server error:", response.status, errorText);
+      }
+    } catch (error) {
+      thankYouMsg.classList.add("text-danger");
+      thankYouMsg.textContent =
+        "⚠️ Error connecting to server. Please check your internet or backend URL.";
+      console.error("Connection error:", error);
+    }
+  });
+</script>
+
   </body>
 </html>
