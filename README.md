@@ -39,7 +39,6 @@ Admins and staff can manage employees, events, packages, and inquiries.
 - Select packages & pricing  
 - Book events and manage bookings  
 - Leave testimonials/feedback  
-- View booking history  
 
 ### Admin/Staff
 - Manage Users/Clients  
@@ -54,8 +53,8 @@ Admins and staff can manage employees, events, packages, and inquiries.
 
 | Table        | Description                               |
 |-------------|-------------------------------------------|
-| users       | Stores client and admin details           |
-| employees   | Stores employee information               |
+| users       | Stores client details                     |
+| employees   | Stores employee and admin information     |
 | events      | Stores event types and details            |
 | packages    | Stores available event packages           |
 | bookings    | Stores booking details (links user, event, package) |
