@@ -1,103 +1,87 @@
-# Celebrato - Event Management System
 
-[![Java](https://img.shields.io/badge/Java-17-blue)](https://www.java.com/) 
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.3-green)](https://spring.io/projects/spring-boot) 
-[![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/) 
-[![MySQL](https://img.shields.io/badge/MySQL-8.0-orange)](https://www.mysql.com/)
+🎉 Celebrato – Event Management System
 
----
+Celebrato is a full-stack web application designed to streamline the planning and management of personal and corporate events. It provides users with a smooth interface to browse, inquire, and book events, while admins can efficiently manage inquiries, bookings, and packages.
 
-## Table of Contents
+🔹 Features
 
-1. [Project Overview](#project-overview)  
-2. [Features](#features)  
-3. [Database Tables](#database-tables)  
-4. [Backend APIs](#backend-apis)  
-5. [Frontend Structure](#frontend-structure)  
-6. [Project Setup](#project-setup)  
-7. [Sample JSON Requests](#sample-json-requests)  
-8. [Technologies Used](#technologies-used)  
-9. [Author](#author)  
-10. [License](#license)  
+User Side:
+Browse different event types: Personal (Weddings, Birthdays, Baby Showers, etc.) and Corporate (Meetings, Product Launches, Annual Gatherings, etc.)
+View event packages and detailed services
+Submit event inquiries via a form
+Responsive, interactive interface with smooth animations
+Contact form for easy communication
 
----
+Admin Side:
+Manage inquiries and bookings
+Add, update, and remove event packages
+View client and event details
+Dashboard for organized event management
 
-## Project Overview
+🔹 Technologies Used
+Front-end: HTML, CSS, Bootstrap, JavaScript
+Back-end: Java (Spring Boot, Hibernate)
+Database: MySQL
 
-**Celebrato** is a comprehensive **Event Management System** that allows clients to book events, select packages, leave testimonials, and contact organizers.  
-Admins and staff can manage employees, events, packages, and inquiries.  
+Tools & Libraries: VS Code, Postman, Live Server (for front-end testing),Eclipse , MySql Workbench
 
-- **Backend:** Built with Spring Boot and MySQL  
-- **Frontend:** Built with React, HTML, CSS, Bootstrap for responsive UI  
+🔹 Project Structure
+Celebrato/
+│
+├── backend/             # Spring Boot application
+│   ├── src/main/java/   # Java source code
+│   ├── src/main/resources/ 
+│   │   └── application.properties (DB config)
+│   └── pom.xml          # Maven dependencies
+│
+├── frontend/            # HTML, CSS, JS, Bootstrap
+│   ├── index.html
+│   ├── about.html
+│   ├── services.html
+│   ├── contact.html
+│   └── assets/          # Images, CSS, JS files
+│
+└── README.md            # Project documentation
 
----
+🔹 Database Setup
+The project uses MySQL to store client inquiries, event bookings, and package information.
+Tables:
+users – Stores client details
+events – Stores event types and packages
+inquiries – Stores inquiries submitted via the form
+bookings – Stores confirmed bookings
 
-## Features
+Database Connectivity: Configured via application.properties in Spring Boot backend:
 
-### Client-Side
-- Browse event types (Personal & Social, Corporate & Business)  
-- Select packages & pricing  
-- Book events and manage bookings  
-- Leave testimonials/feedback  
+spring.datasource.url=jdbc:mysql://localhost:3306/celebrato_db
+spring.datasource.username=root
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
 
-### Admin/Staff
-- Manage Users/Clients  
-- Manage Employees  
-- Manage Events & Packages  
-- View and respond to inquiries  
-- View client testimonials  
+Note: You need a local MySQL server to run the backend. Without a live MySQL instance, the backend cannot fully function online.
 
----
+🔹 How to Run Locally
 
-## Database Tables
+Clone the repository:
+git clone https://github.com/yourusername/celebrato.git
 
-| Table        | Description                               |
-|-------------|-------------------------------------------|
-| users       | Stores client details                     |
-| employees   | Stores employee and admin information     |
-| events      | Stores event types and details            |
-| packages    | Stores available event packages           |
-| bookings    | Stores booking details (links user, event, package) |
-| inquiries   | Stores client inquiries                    |
-| testimonials| Stores client feedback and ratings        |
+Set up MySQL Database:
+Create a database celebrato_db
+Import any SQL script if provided or let Hibernate auto-create tables
 
----
+Configure backend:
+Update application.properties with your DB credentials
 
-## Backend APIs
+Run backend:
+mvn spring-boot:run
 
-### Base URL
-http://localhost:8080/api
+Open frontend:
+Use Live Server in VS Code to serve index.html and other pages
 
-### 1. Booking APIs
-| Method | Endpoint               | Description                  |
-|--------|-----------------------|------------------------------|
-| GET    | `/bookings`            | Get all bookings             |
-| GET    | `/bookings/{id}`       | Get booking by ID            |
-| POST   | `/bookings`            | Create a new booking         |
-| PUT    | `/bookings/{id}`       | Update a booking             |
-| DELETE | `/bookings/{id}`       | Delete a booking             |
+🔹 Live Demo Limitation
 
-### 2. Testimonials APIs
-| Method | Endpoint                  | Description                  |
-|--------|---------------------------|------------------------------|
-| GET    | `/testimonials`           | Get all testimonials         |
-| GET    | `/testimonials/{id}`      | Get testimonial by ID        |
-| POST   | `/testimonials`           | Create a new testimonial     |
-| DELETE | `/testimonials/{id}`      | Delete a testimonial         |
+Currently, the live demo is not available because the project requires a MySQL database, which cannot be freely hosted online alongside GitHub Pages. Form submissions and database-dependent features will not work without a backend server connected to a live database.
 
-### 3. Users APIs
-- CRUD endpoints: `/users`
-
-### 4. Events APIs
-- CRUD endpoints: `/events`
-
-### 5. Packages APIs
-- CRUD endpoints: `/packages`
-
-### 6. Employees APIs
-- CRUD endpoints: `/employees`
-
-### 7. Inquiries APIs
-- CRUD endpoints: `/inquiries`
-
-
+Recommendation:
+Run locally with backend + MySQL to see full functionality
+Alternatively, deploy backend on platforms like Render or Heroku and connect to a cloud MySQL service like Remote MySQL for a fully live demo
