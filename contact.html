@@ -37,7 +37,7 @@
       }
 
       .hero-wrapper {
-        background: url("bg-contact1.webp") no-repeat center center/cover;
+        background: url("bg-contact1.jpg") no-repeat center center/cover;
         height: 100vh;
         position: relative;
         color: white;
@@ -627,6 +627,7 @@
 
  
     <!-- ✅ Backend Connection Script -->
+<<<<<<< HEAD
     <!-- ✅ Backend Connection Script -->
 <script>
   // Your live Render backend URL
@@ -676,5 +677,58 @@
   });
 </script>
 
+=======
+    <script>
+      // Replace this with your actual Render backend URL
+      const API_BASE = "http://localhost:8080";
+
+      document
+        .getElementById("inquiryForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          // Collect form data
+          const inquiry = {
+            name: document.getElementById("name").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value,
+          };
+
+          const thankYouMsg = document.getElementById("thankYouMsg");
+          thankYouMsg.style.display = "block"; // ensure message area is visible
+          thankYouMsg.classList.remove("text-danger"); // reset class
+
+          try {
+            const response = await fetch(`${API_BASE}/api/inquiries`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(inquiry),
+            });
+
+            if (response.ok) {
+              // Successfully submitted
+              const data = await response.json(); // parse JSON response
+              thankYouMsg.textContent =
+                "✅ Thank you for contacting us! Our team will reach out within 24 hours.";
+              this.reset(); // reset the form
+              console.log("Inquiry submitted:", data);
+            } else {
+              // Server returned an error
+              const errorText = await response.text();
+              thankYouMsg.classList.add("text-danger");
+              thankYouMsg.textContent = `❌ Failed to submit inquiry. Server responded: ${response.status} ${errorText}`;
+              console.error("Server error:", errorText);
+            }
+          } catch (error) {
+            // Network or connection error
+            thankYouMsg.classList.add("text-danger");
+            thankYouMsg.textContent =
+              "⚠️ Error connecting to server. Please check your internet or backend URL.";
+            console.error("Connection error:", error);
+          }
+        });
+    </script>
+>>>>>>> 52f811a (Updated Celebrato project files and layout)
   </body>
 </html>
